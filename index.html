@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Main template</title>
+	<title>Quartzy</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -19,70 +19,1256 @@
    	<link rel="icon" href="img/favicon.png" type="image/png" sizes="50x50">
 
 	<link rel="stylesheet" type="text/css" href="css/uikit.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/components/slideshow.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,500i,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>
 <body>
 
-	<div class="back-white" data-uk-sticky>
-		<div class="uk-container uk-container-center">
-			<div class="uk-clearfix">
-				<div class="uk-float-left">
-					<a href="index.html"><img src="img/logo.svg" width="100"></a>
-				</div>
-				<div class="uk-float-right">
-					<a href="category.html"><img src="img/cat-1.svg" width="57"></a>
-					<a href="category.html"><img src="img/cat-2.svg" width="57"></a>
-					<a href="category.html"><img src="img/cat-3.svg" width="57"></a>
-					<a href="category.html"><img src="img/cat-4.svg" width="57"></a>
-				</div>
-			</div>
-
-			<nav class="uk-navbar">
-                <a class="uk-navbar-brand" href="index.html"><img src="img/logo.svg" width="100"></a>
-                <ul class="uk-navbar-nav">
-                    <li class="uk-parent uk-active" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
-                        <a href=""><i class="uk-icon-home"></i> Level1</a>
-                        <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" aria-hidden="true" style="top: 40px; left: 0px;" tabindex="">
-                            <ul class="uk-nav uk-nav-navbar">
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Another item</a></li>
-                                <li class="uk-nav-header">Header</li>
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Another item</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">Separated item</a></li>
-                            </ul>
+    <!-- Filter in modal. Only show mobile when you're click "filter" button -->
+    <div id="filter-mobile" uk-modal>
+        <div class="uk-modal-dialog padding-30" uk-overflow-auto>
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="">
+                <div class="uk-margin">
+                    <div class="uk-clearfix uk-flex-middle">
+                        <div class="uk-float-left">
+                            <span class="text-dark-blue text-uppercase text-11 uk-text-bold">Filters</span>
                         </div>
-                    </li>
-                </ul>
-                <div class="uk-navbar-content">Some <a href="#">link</a>.</div>
-                <div class="uk-navbar-content uk-hidden-small">
-                    <form class="uk-form uk-margin-remove uk-display-inline-block">
-                        <input type="text" placeholder="Search">
-                    </form>
-                </div>
-                <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
-                    <div class="uk-button-group">
-                        <a href="category.html"><img src="img/cat-1.svg" width="57"></a>
-						<a href="category.html"><img src="img/cat-2.svg" width="57"></a>
-						<a href="category.html"><img src="img/cat-3.svg" width="57"></a>
-						<a href="category.html"><img src="img/cat-4.svg" width="57"></a>
+                        <div class="uk-float-right">
+                            <button class="uk-button uk-button-primary uk-button-small text-9 clearFilterBtn">
+                                Clear filters
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <div class="filter-list">
+                    <button class="uk-button button button-gray click uk-button-small text-14">Today</button>
+                    <button class="uk-button button button-gray uk-button-small text-14">Uncategorized</button>
+                    <button class="uk-button button button-gray uk-button-small text-14">Unapproved</button>
+                </div>
+
+                <hr class="margin-top-30 margin-bottom-30">
+
+                <div class="">
+                    <legend class="uk-legend text-14 text-gray">Created between</legend>
+                    <form class="uk-grid-small uk-margin-small-top" uk-grid>
+                        <div class="uk-width-1-2@s">
+                            <div class="uk-inline uk-display-block">
+                                <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                <input class="uk-input" type="text" id="datepicker" placeholder="Start date">
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2@s">
+                            
+                            <div class="uk-inline uk-display-block">
+                                <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                <input class="uk-input" type="text" id="datepicker2" placeholder="End date" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="uk-margin">
+                    <legend class="uk-legend text-14 text-gray">Country</legend>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <select class="uk-select" id="form-stacked-select">
+                            <option>Select one</option>
+                            <option>Option 02</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <legend class="uk-legend text-14 text-gray">Category</legend>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <select class="uk-select" id="form-stacked-select">
+                            <option>Select one</option>
+                            <option>Option 02</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom">
+                        Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- This is mobile menu. Off canvas content  -->
+    <div id="mobile-menu" uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar uk-padding-remove">
+            <a class="uk-offcanvas-close"><span uk-icon="icon: close; ratio: 2"></span></a>
+            <div class="uk-clearfix uk-flex-middle back-dark-blue padding-15">
+                <div class="uk-float-left">
+                    <a href="index.html" class="uk-hidden@m">
+                        <div class="padding-left-5">
+                            <div class="uk-text-bold" style=" letter-spacing: 2px;">admin</div>
+                            <div style="margin-top: -4px;"><img src="img/logo-txt.png" width="120"  /></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="uk-float-right">
+                    
+                </div>
+            </div>
+
+            <ul class="uk-nav uk-nav-default uk-list uk-text-bold">
+                
+                <li class="uk-active"><a href="index.html">Home</a></li>
+                <li><a href="#">Groups</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Institutions</a></li>
+                <li><a href="#">Forms</a></li>
+                <li><a href="#">Bulk Actions</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: users"></span> Admin</a></li>
+                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- THE END -->
+
+
+
+    <div class="uk-flex-middle navbar-container back-white menu-border-bottom uk-grid-small" uk-grid uk-sticky>
+        
+        <!-- This is logo without text. Hide large display. It's for tablet and mobile -->
+        <div class="uk-hidden@l">
+            <div class="uk-flex uk-flex-middle ">
+                <a href="index.html">
+                    <div class="back-orange padding-15">
+                        <img src="img/q-logo.png" width="22" />
+                    </div>
+                </a>
+                <a href="index.html" class="uk-hidden@m">
+                    <div class="">
+                        <div style="margin-top: -5px;"><img src="img/admin-txt.png" width="50" class="margin-left-20" /></div>
+                        <div style="margin-top: -4px;"><img src="img/logo-txt.png" width="120" class="margin-left-20" /></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- THE END -->
+
+        <!-- This is logo with text. Only show large display. It's for desktop and large screens.  -->
+        <div class="uk-width-1-5@m uk-visible@l">
+            <div class="uk-flex uk-flex-middle menu-border-right">
+                <a href="index.html">
+                    <div class="back-orange padding-15">
+                        <img src="img/q-logo.png" width="22" />
+                    </div>
+                </a>
+                <a href="index.html" class="">
+                    <div class="">
+                        <div style="margin-top: -5px;"><img src="img/admin-txt.png" width="50" class="margin-left-20" /></div>
+                        <div style="margin-top: -4px;"><img src="img/logo-txt.png" width="120" class="margin-left-20" /></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- THE END -->
+
+        
+        <div class="uk-width-expand">
+            <nav class="uk-navbar-container uk-navbar-transparent navbar" uk-navbar>
+
+
+                <!-- It's menu. Only affects device widths of 960px and larger. For tablet, desktop, large screens. -->
+                <div class="uk-navbar-left uk-flex uk-visible@m">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">Groups</a></li>
+                        <li><a href="">Users</a></li>
+                        <li><a href="">Institutions</a></li>
+                        <li><a href="">Forms</a></li>
+                        <li><a href="">Bulk Actions</a></li>
+                        <li><a href="">Dashboard</a></li>
+                    </ul>
+                </div>
+                <!-- THE END -->
+
+                <!-- It's extra links. Only affects device widths of 960px and larger. For tablet, desktop, large screens. -->
+                <div class="uk-navbar-right uk-visible@m">
+                    <a class="uk-button admins-btn text-blue text-10 uk-text-bold" href="#">Admin</a>
+                    <a class="uk-button logout-btn text-gray text-10 uk-text-bold margin-left-10 margin-right-20" href="#">
+                        Logout
+                    </a>
+                </div>
+                <!-- THE END -->
+                
+                <!-- It's extra links. Only affects device widths of 960px and larger. For mobile display. -->
+                <div class="uk-navbar-right uk-hidden@m">
+                    <a href="#mobile-menu" class="margin-right-20 uk-text-bold" uk-toggle>
+                        <span uk-icon="icon: menu; ratio: 2"></span>
+                    </a>
+                </div>
+                <!-- THE END -->
             </nav>
-		</div>
-	</div>
+        </div>
+        
+
+    </div>
+
+
+    <div class="body-container ">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-5@m uk-visible@l">
+                <!-- Sidebar --> 
+                <div class="back-white sidebar padding-15 uk-height-1-1 uk-height-viewport" uk-sticky="offset: 54">
+                    <div class="">
+                        <form>
+                            <fieldset class="uk-fieldset">
+                                <div class="uk-inline uk-display-block">
+                                    <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: search"></span>
+                                    <input class="uk-input text-black text-14" type="text" placeholder="Search">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-clearfix uk-flex-middle">
+                            <div class="uk-float-left">
+                                <span class="text-dark-blue text-uppercase text-11 uk-text-bold">Filters</span>
+                            </div>
+                            <div class="uk-float-right">
+                                <button class="uk-button uk-button-primary uk-button-small text-9 clearFilterBtn">
+                                    Clear filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-list">
+                        <button class="uk-button button button-gray click uk-button-small text-14">Today</button>
+                        <button class="uk-button button button-gray uk-button-small text-14">Uncategorized</button>
+                        <button class="uk-button button button-gray uk-button-small text-14">Unapproved</button>
+                    </div>
+
+                    <hr class="margin-top-30 margin-bottom-30">
+
+                    <div class="">
+                        <legend class="uk-legend text-14 text-gray">Created between</legend>
+                        <form class="uk-grid-small uk-margin-small-top" uk-grid>
+                            <div class="uk-width-1-2@s">
+                                <div class="uk-inline uk-display-block">
+                                    <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                    <input class="uk-input" type="text" id="datepicker" placeholder="Start date">
+                                </div>
+                            </div>
+                            <div class="uk-width-1-2@s">
+                                
+                                <div class="uk-inline uk-display-block">
+                                    <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                    <input class="uk-input" type="text" id="datepicker2" placeholder="End date" >
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="uk-margin">
+                        <legend class="uk-legend text-14 text-gray">Country</legend>
+                        <div class="uk-form-controls uk-margin-small-top">
+                            <select class="uk-select" id="form-stacked-select">
+                                <option>Select one</option>
+                                <option>Option 02</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <legend class="uk-legend text-14 text-gray">Category</legend>
+                        <div class="uk-form-controls uk-margin-small-top">
+                            <select class="uk-select" id="form-stacked-select">
+                                <option>Select one</option>
+                                <option>Option 02</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom">
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <!-- THE END --> 
+
+            </div>
+            <div class="uk-width-expand@m uk-width-1-1@s">
+                <!-- Tablet filter section --> 
+                <div class="back-white padding-15 margin-5 margin-top-10 uk-hidden@l uk-visible@m">
+                    <div class="uk-child-width-1-3 uk-grid-large uk-text-left" uk-grid>
+                        <!-- Column one - Search, Filter -->
+                        <div class="">
+                            <div class="margin-bottom-10">
+                                <form>
+                                    <fieldset class="uk-fieldset">
+                                        <div class="uk-inline uk-display-block">
+                                            <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: search"></span>
+                                            <input class="uk-input text-black text-14" type="text" placeholder="Search">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="filter-list">
+                                <button class="uk-button button button-gray click uk-button-small text-14">Today</button>
+                                <button class="uk-button button button-gray uk-button-small text-14">Uncategorized</button>
+                                <button class="uk-button button button-gray uk-button-small text-14">Unapproved</button>
+                            </div>
+                        </div>
+                        <!-- THE END -->
+
+                        <!-- Column two - Created between -->
+                        <div class="">
+                            <div class="margin-top-20">
+                                <legend class="uk-legend text-14 text-gray">Created between</legend>
+                                <form class="uk-grid-small uk-margin-small-top" uk-grid>
+                                    <div class="uk-width-1-2@s">
+                                        <div class="uk-inline uk-display-block">
+                                            <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                            <input class="uk-input" type="text" id="datepicker-mobile1" placeholder="Start date">
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-2@s">
+                                        
+                                        <div class="uk-inline uk-display-block">
+                                            <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: chevron-down"></span>
+                                            <input class="uk-input" type="text" id="datepicker-mobile2" placeholder="End date" >
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- THE END -->
+
+                        <!-- Column three - Country -->
+                        <div class="">
+                            <div class="uk-child-width-1-2" uk-grid>
+                                <div class="margin-top-20">
+                                    <div class="uk-margin">
+                                        <legend class="uk-legend text-14 text-gray">Country</legend>
+                                        <div class="uk-form-controls uk-margin-small-top">
+                                            <select class="uk-select" id="form-stacked-select">
+                                                <option>Select one</option>
+                                                <option>Option 02</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="margin-top-20">
+                                    <div class="uk-margin">
+                                        <legend class="uk-legend text-14 text-gray">Category</legend>
+                                        <div class="uk-form-controls uk-margin-small-top">
+                                            <select class="uk-select" id="form-stacked-select">
+                                                <option>Select one</option>
+                                                <option>Option 02</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- THE END -->
+                    </div>
+                </div>
+                <!-- THE END --> 
+
+                <!-- Mobile filter section --> 
+                <div class="uk-hidden@m">
+                    <div class="margin-30">
+                        <div class="">
+                            <form>
+                                <fieldset class="uk-fieldset">
+                                    <div class="uk-inline uk-display-block">
+                                        <span class="uk-form-icon uk-form-icon-flip " uk-icon="icon: search"></span>
+                                        <input class="uk-input text-black text-14" type="text" placeholder="Search">
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="uk-margin uk-text-center">
+                            Selected: <span class="uk-text-bold text-orange"> Today , United State</span>
+                        </div>
+
+                        <div class="uk-margin">
+                            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" uk-toggle="target: #filter-mobile">
+                                Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- THE END --> 
+
+                <!-- Table Content --> 
+                <div class="text-dark-blue uk-text-bold text-13 margin-top-30">
+                    <div class="margin-left-10 small-text-center"><span class="text-orange">7432</span> Groups found</div>
+                    <div class="margin-top-20">
+                        <div class="uk-overflow-auto">
+                            <table class="uk-table body-table uk-table-divider" id="table-container">
+                                <thead >
+                                    <tr>
+                                        <th>Name / ID</th>
+                                        <th>Institutions</th>
+                                        <th>Admins</th>
+                                        <th>OAO</th>
+                                        <th>M</th>
+                                        <th>L</th>
+                                        <th>I</th>
+                                        <th>O</th>
+                                        <th>Invitations</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202201" id="ember1623" class="ember-view">Mc Donald's</a>
+                                          <small class="text-muted">202201</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/21534" id="ember1624" class="ember-view">Universiti Putra Malaysia, UPM (Malaysia)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">Malaysia</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299258" id="ember1625" class="ember-view">Joshua Chew</a>
+                                            <small class="text-muted">joshua.chemistry@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">2</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202200" id="ember1626" class="ember-view">Busch Lab</a>
+                                          <small class="text-muted">202200</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40485" id="ember1627" class="ember-view">The Salk Institute for Biological Studies</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299364" id="ember1628" class="ember-view">Erin Daniels</a>
+                                            <small class="text-muted">edaniels@salk.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202199" id="ember1629" class="ember-view">Andre Lab</a>
+                                          <small class="text-muted">202199</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40482" id="ember1630" class="ember-view">Sorbonne Universite</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">France</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299355" id="ember1631" class="ember-view">Volker Bormuth</a>
+                                            <small class="text-muted">volker.bormuth@upmc.fr</small>
+                                            <!---->
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-normal">1</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202198" id="ember1632" class="ember-view">Nathan personal</a>
+                                          <small class="text-muted">202198</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40483" id="ember1633" class="ember-view">indibio</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299357" id="ember1634" class="ember-view">Nathan Katz</a>
+                                            <small class="text-muted">nkatzfert@yahoo.com</small>
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202197" id="ember1635" class="ember-view">Bormuth Lab</a>
+                                          <small class="text-muted">202197</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40482" id="ember1636" class="ember-view">Sorbonne Universite</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">France</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299355" id="ember1637" class="ember-view">Volker Bormuth</a>
+                                            <small class="text-muted">volker.bormuth@upmc.fr</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-normal">3</td>
+                                        <td title="Order Requests" class="text-center text-normal">13</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202195" id="ember1638" class="ember-view">EP technologies </a>
+                                          <small class="text-muted">202195</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40478" id="ember1639" class="ember-view">EP technologies</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299341" id="ember1640" class="ember-view">Maria Dawaher</a>
+                                            <small class="text-muted">m.dawaher@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">2</td>
+                                        <td title="Inventory" class="text-center text-normal">2</td>
+                                        <td title="Order Requests" class="text-center text-normal">3</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202194" id="ember1641" class="ember-view">Zhang lab</a>
+                                          <small class="text-muted">202194</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2363" id="ember1642" class="ember-view">The University of Chicago, UChicago (IL)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299337" id="ember1643" class="ember-view">Xiaochang Zhang</a>
+                                            <small class="text-muted">xiaochang.zhang@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">1</td>
+                                        <td title="Inventory" class="text-center text-normal">1</td>
+                                        <td title="Order Requests" class="text-center text-normal">9</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202193" id="ember1644" class="ember-view">form one</a>
+                                          <small class="text-muted">202193</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/6493" id="ember1645" class="ember-view">Quartzy Testing University</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/92487" id="ember1646" class="ember-view">Dylan Goldade</a>
+                                            <small class="text-muted">Dylan.Goldade@quartzy.com</small>
+                                            <small class="text-muted">Grad Student/Post Doc</small>
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">1514</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202192" id="ember1647" class="ember-view">Cech Lab</a>
+                                          <small class="text-muted">202192</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/8065" id="ember1648" class="ember-view">Howard Hughes Medical Institute - HHMI</a>
+                                          <small class="text-muted">HEALTHCARE</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299325" id="ember1649" class="ember-view">Karen Goodrich</a>
+                                            <small class="text-muted">karen.goodrich@comcast.net</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202191" id="ember1650" class="ember-view">Biomechanics lab</a>
+                                          <small class="text-muted">202191</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/14523" id="ember1651" class="ember-view">Medstar Union Memorial Hospital (MD)</a>
+                                          <small class="text-muted">HEALTHCARE</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299320" id="ember1652" class="ember-view">Pooyan Abbasi</a>
+                                            <small class="text-muted">abbasi.pooyan@temple.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-normal">1</td>
+                                        <td title="Order Requests" class="text-center text-normal">2</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202190" id="ember1653" class="ember-view">Ivanovski Tissue Engineering and Additive Manufacture (iTEAM)</a>
+                                          <small class="text-muted">202190</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/24035" id="ember1654" class="ember-view">The University of Queensland</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">Australia</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299323" id="ember1655" class="ember-view">Michal Bartnikowski</a>
+                                            <small class="text-muted">michal.bartnikowski@uq.edu.au</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">1</td>
+                                        <td title="Inventory" class="text-center text-normal">21</td>
+                                        <td title="Order Requests" class="text-center text-normal">22</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202189" id="ember1656" class="ember-view">Lab 3008</a>
+                                          <small class="text-muted">202189</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/5379" id="ember1657" class="ember-view">Thermo Fisher Scientific</a>
+                                          <small class="text-muted">SUPPLIER</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299319" id="ember1658" class="ember-view">Mia Reynolds</a>
+                                            <small class="text-muted">mia.reynolds@thermofisher.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">3</td>
+                                        <td title="Inventory" class="text-center text-normal">2</td>
+                                        <td title="Order Requests" class="text-center text-normal">2</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202188" id="ember1659" class="ember-view">Cardio/Neuro Protection Labs</a>
+                                          <small class="text-muted">202188</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2665" id="ember1660" class="ember-view">University of California San Diego, UCSD (CA)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/112076" id="ember1661" class="ember-view">Kristofer Haushalter</a>
+                                            <small class="text-muted">khaushal@ucsd.edu</small>
+                                            <small class="text-muted">Grad Student/Post Doc</small>
+                                            <a href="#/users/299322" id="ember1662" class="ember-view">Jonathan Okerblom</a>
+                                            <small class="text-muted">jonathanokerblom@gmail.com</small>
+                                            <!---->
+                                            <a href="#/users/299347" id="ember1663" class="ember-view">DAWNA CHUSS</a>
+                                            <small class="text-muted">dchuss@ucsd.edu</small>
+                                            <!---->
+                                            <a href="#/users/299363" id="ember1664" class="ember-view">Mehul Dhanani </a>
+                                            <small class="text-muted">mdhanani93@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">5</td>
+                                        <td title="Logins" class="text-center text-normal">141</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202187" id="ember1665" class="ember-view">Bao Group</a>
+                                          <small class="text-muted">202187</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2598" id="ember1666" class="ember-view">Stanford University (CA)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299289" id="ember1667" class="ember-view">Lily Pay</a>
+                                            <small class="text-muted">lpay@stanford.edu</small>
+                                            <!---->
+                                            <a href="#/users/299321" id="ember1668" class="ember-view">Genniame Felix</a>
+                                            <small class="text-muted">gnfelix@stanford.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">4</td>
+                                        <td title="Logins" class="text-center text-normal">1</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202186" id="ember1669" class="ember-view">Ashrafi Lab</a>
+                                          <small class="text-muted">202186</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2374" id="ember1670" class="ember-view">University of California San Francisco, UCSF (CA)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299312" id="ember1671" class="ember-view">Ashrafi Lab</a>
+                                            <small class="text-muted">ashrafi.lab@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">2</td>
+                                        <td title="Logins" class="text-center text-normal">2</td>
+                                        <td title="Inventory" class="text-center text-normal">226</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202185" id="ember1672" class="ember-view">Naccache-Lab</a>
+                                          <small class="text-muted">202185</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/3688" id="ember1673" class="ember-view">Concordia University, Montreal (Canada)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">Canada</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299307" id="ember1674" class="ember-view">Jun-Ray Macairan</a>
+                                            <small class="text-muted">junray.macairan@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202184" id="ember1675" class="ember-view">Christmas Lab</a>
+                                          <small class="text-muted">202184</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40474" id="ember1676" class="ember-view">Margaret B Christmas</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299303" id="ember1677" class="ember-view">Margaret B Christmas</a>
+                                            <small class="text-muted">margaretbryant@me.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202183" id="ember1678" class="ember-view">Staycon LLC - General</a>
+                                          <small class="text-muted">202183</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/30952" id="ember1679" class="ember-view">Craft (CO)</a>
+                                          <small class="text-muted">TESTING</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/298576" id="ember1680" class="ember-view">Shared Services Purchasing</a>
+                                            <small class="text-muted">purchasing@sharedserv.com</small>
+                                            <!---->
+                                            <a href="#/users/298577" id="ember1681" class="ember-view">Nathan Glass</a>
+                                            <small class="text-muted">nathan@sharedserv.com</small>
+                                            <!---->
+                                            <a href="#/users/295960" id="ember1682" class="ember-view">Stephanie Strait</a>
+                                            <small class="text-muted">sstrait@craft710.com</small>
+                                            <!---->
+                                            <a href="#/users/298869" id="ember1683" class="ember-view">Christy Reimann</a>
+                                            <small class="text-muted">christy@craft710.com</small>
+                                            <!---->
+                                            <a href="#/users/296144" id="ember1684" class="ember-view">Dylan Marsh</a>
+                                            <small class="text-muted">dylan@sharedserv.com</small>
+                                            <!---->
+                                            <a href="#/users/296852" id="ember1685" class="ember-view">Jeremy Bullock</a>
+                                            <small class="text-muted">jbullock@craft710.com</small>
+                                            <!---->
+                                            <a href="#/users/296566" id="ember1686" class="ember-view">Adam Drown</a>
+                                            <small class="text-muted">adam@sharedserv.com</small>
+                                            <!---->
+                                            <a href="#/users/288979" id="ember1687" class="ember-view">Justin Tapia</a>
+                                            <small class="text-muted">tap@craft710.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">15</td>
+                                        <td title="Logins" class="text-center text-normal">225</td>
+                                        <td title="Inventory" class="text-center text-normal">2</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202182" id="ember1688" class="ember-view">fundamentals lab</a>
+                                          <small class="text-muted">202182</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40475" id="ember1689" class="ember-view">Motlow State Community College, MSCC (TN)</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299298" id="ember1690" class="ember-view">Margaret Hale</a>
+                                            <small class="text-muted">mhale@mscc.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">2</td>
+                                        <td title="Logins" class="text-center text-normal">1</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202181" id="ember1691" class="ember-view">fundamentals lab</a>
+                                          <small class="text-muted">202181</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/40475" id="ember1692" class="ember-view">Motlow State Community College, MSCC (TN)</a>
+                                          <small class="text-muted">UNCATEGORIZED</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299293" id="ember1693" class="ember-view">Margaret Hale</a>
+                                            <small class="text-muted">halemargaret89@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">2</td>
+                                        <td title="Logins" class="text-center text-normal">3</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202180" id="ember1694" class="ember-view">Staycon LLC - General - Fail3</a>
+                                          <small class="text-muted">202180</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/30952" id="ember1695" class="ember-view">Craft (CO)</a>
+                                          <small class="text-muted">TESTING</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/298577" id="ember1696" class="ember-view">Nathan Glass</a>
+                                            <small class="text-muted">nathan@sharedserv.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">5</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202179" id="ember1697" class="ember-view">Staycon LLC - General - Fail2</a>
+                                          <small class="text-muted">202179</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/30952" id="ember1698" class="ember-view">Craft (CO)</a>
+                                          <small class="text-muted">TESTING</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/298577" id="ember1699" class="ember-view">Nathan Glass</a>
+                                            <small class="text-muted">nathan@sharedserv.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">5</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202178" id="ember1700" class="ember-view">AVI (UPSTREAM)</a>
+                                          <small class="text-muted">202178</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/4940" id="ember1701" class="ember-view">University of Alberta (Canada)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">Canada</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/161772" id="ember1702" class="ember-view">Drew Nahirney</a>
+                                            <small class="text-muted">nahirney@ualberta.ca</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">67</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202177" id="ember1703" class="ember-view">Production </a>
+                                          <small class="text-muted">202177</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/15485" id="ember1704" class="ember-view">DiaCarta</a>
+                                          <small class="text-muted">HEALTHCARE</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299271" id="ember1705" class="ember-view">Purvi Gaglani</a>
+                                            <small class="text-muted">pgaglani@diacarta.com</small>
+                                            <!---->
+                                            <a href="#/users/83177" id="ember1706" class="ember-view">Michael J. Powell</a>
+                                            <small class="text-muted">mpowell@diacarta.com</small>
+                                            <small class="text-muted">Professor/Research Scientist</small>
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">2</td>
+                                        <td title="Logins" class="text-center text-normal">2</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202176" id="ember1707" class="ember-view">Sinha Lab</a>
+                                          <small class="text-muted">202176</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2967" id="ember1708" class="ember-view">University of Wisconsin-Madison, UW-Madison (WI)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299275" id="ember1709" class="ember-view">Raunak Sinha</a>
+                                            <small class="text-muted">raunak.sinha@wisc.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">2</td>
+                                        <td title="Logins" class="text-center text-normal">1</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202175" id="ember1710" class="ember-view">3,5-diarylisoxazoles synthesis </a>
+                                          <small class="text-muted">202175</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/13595" id="ember1711" class="ember-view">Saint Mary's University of Minnesota</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/298037" id="ember1712" class="ember-view">ramontica Langfeldt</a>
+                                            <small class="text-muted">rslang14@smumn.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">3</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202174" id="ember1713" class="ember-view">BME </a>
+                                          <small class="text-muted">202174</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2453" id="ember1714" class="ember-view">George Washington University, GWU (DC)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299261" id="ember1715" class="ember-view">Jaime Drayton</a>
+                                            <small class="text-muted">jaimedrayton@gwu.edu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-normal">1</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202173" id="ember1716" class="ember-view">Inorganic Synthesis</a>
+                                          <small class="text-muted">202173</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/21534" id="ember1717" class="ember-view">Universiti Putra Malaysia, UPM (Malaysia)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">Malaysia</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299258" id="ember1718" class="ember-view">Joshua Chew</a>
+                                            <small class="text-muted">joshua.chemistry@gmail.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-normal">2</td>
+                                        <td title="Inventory" class="text-center text-normal">1</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202172" id="ember1719" class="ember-view">Chem Lab 203 Example</a>
+                                          <small class="text-muted">202172</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/2560" id="ember1720" class="ember-view">Providence College (RI)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">United States of America (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299254" id="ember1721" class="ember-view">William Henderson</a>
+                                            <small class="text-muted">whenderson@eheinc.com</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <a href="#/groups/202171" id="ember1722" class="ember-view">HL7-4.065A</a>
+                                          <small class="text-muted">202171</small>
+                                          <small class="text-muted">Created Mar 21, 2018</small>
+                                        </td>
+                                        <td>
+                                          <a href="#/institutions/12470" id="ember1723" class="ember-view">Hogeschool Utrecht (Netherlands)</a>
+                                          <small class="text-muted">HIGHER_EDUCATION</small>
+                                          <small class="text-muted">Netherlands (the)</small>
+                                        </td>
+                                        <td>
+                                            <a href="#/users/299250" id="ember1724" class="ember-view">saskia Bubberman</a>
+                                            <small class="text-muted">saskia.bubberman@student.hu</small>
+                                            <!---->
+                                        </td>
+                                        <td></td>
+                                        <td title="Members" class="text-center text-normal">1</td>
+                                        <td title="Logins" class="text-center text-muted">0</td>
+                                        <td title="Inventory" class="text-center text-muted">0</td>
+                                        <td title="Order Requests" class="text-center text-muted">0</td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- THE END --> 
+
+                <!-- Pagination --> 
+                <div class="uk-margin">
+                    <div class="uk-clearfix">
+                        <div class="uk-float-left">
+                             <div class="uk-margin">
+                                <div uk-form-custom="target: > * > span:first-child">
+                                    <select>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="50">50</option>
+                                        <option value="60">60</option>
+                                    </select>
+                                    <span class="uk-text-bold text-dark-blue text-13 margin-right-20">Show result:</span>
+                                    <button class="uk-button show-btn" type="button" tabindex="-1">
+                                        <span></span>
+                                        <span uk-icon="icon: chevron-down"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-float-right">
+                            <ul class="uk-pagination margin-right-30">
+                                <li class="uk-disabled"><span><span uk-pagination-previous></span></span></li>
+                                <li class="uk-active"><span>1</span></li>
+                                
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="uk-disabled"><span>...</span></li>
+                                <li><a href="#">8</a></li>
+                                <li><a href="#"><span uk-pagination-next></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- THE END --> 
+            </div>
+        </div>
+    </div>
+    
 	
 	
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js/uikit.min.js"></script>
-	<script type="text/javascript" src="js/components/parallax.min.js"></script>
-	<script type="text/javascript" src="js/components/sticky.min.js"></script>
+    <script type="text/javascript" src="js/uikit-icons.min.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/picker.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
