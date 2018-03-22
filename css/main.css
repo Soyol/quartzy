@@ -781,4 +781,20 @@ table.body-table tbody tr td a{
         text-align: center !important;
     }
 
+    .paging-container>div{
+        display: block !important;
+        text-align: center !important;
+        float: none !important;
+    }
+
+    .paging-container>div .uk-pagination.margin-right-30{
+        margin-right: 0 !important;
+        margin: 0 !important;
+        margin-bottom: 50px !important;
+        margin-top: 30px !important;
+
+        display: flex !important;
+        justify-content: center !important;
+    }
+
 }
